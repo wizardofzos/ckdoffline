@@ -1,0 +1,25 @@
+# Local tooling, scratch and working notes
+docs/superpowers/
+tests/local/
+.superpowers/
+.oracle/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Disk images, backups and journals (never commit volumes)
+*.CCKD
+*.cckd
+*.ckd
+*.CKD
+*.cckd64
+*.bak-*
+*.journal
+
+# Packaging output
+build/
+dist/
+*.egg-info/
+
+# macOS
+.DS_Store

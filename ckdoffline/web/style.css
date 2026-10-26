@@ -1,0 +1,99 @@
+/* 3270 / ISPF look: black screen, green protected text, white unprotected fields,
+   turquoise and blue headers. One character = 1ch; rows are fixed-height lines. */
+:root {
+  --bg: #000;
+  --green: #3f3;
+  --white: #fff;
+  --turq: #40e0d0;
+  --blue: #6af;
+  --red: #f55;
+  --yellow: #ff3;
+  --pink: #f6c;
+  --dim: #2a8a2a;
+  --field-bg: #0a1a0a;
+  --font: "IBM Plex Mono", Menlo, Consolas, monospace;
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--green);
+  height: 100%;
+}
+
+body {
+  font: 16px/1.25 var(--font);
+  padding: 8px 12px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.panel {
+  width: calc(var(--cols, 80) * 1ch);
+  white-space: pre;
+}
+
+.probe {
+  position: absolute;
+  visibility: hidden;
+}
+
+.row {
+  height: 1.25em;
+  line-height: 1.25em;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.row span { white-space: pre; }
+
+/* protected text */
+.status { color: var(--blue); }
+.title { color: var(--turq); }
+.short { color: var(--white); font-weight: bold; }
+.long { color: var(--white); }
+.prompt { color: var(--green); }
+.head { color: var(--turq); }
+.out { color: var(--green); }
+.info { color: var(--turq); }
+.warn { color: var(--yellow); }
+.hi { color: var(--white); font-weight: bold; }
+.dim { color: var(--dim); }
+.dir { color: var(--turq); }
+.alias { color: var(--pink); }
+.marker { color: var(--blue); }
+.hex { color: var(--turq); }
+.found { color: var(--bg); background: var(--white); }
+.legend { color: var(--blue); }
+.status-msg { color: var(--white); }
+
+/* unprotected fields: underlined, white, like 3270 input fields */
+input.fld {
+  font: inherit;
+  color: var(--white);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--green);
+  padding: 0;
+  margin: 0;
+  height: 1.2em;
+  line-height: 1.2em;
+  vertical-align: top;
+  box-sizing: content-box;
+  caret-color: var(--white);
+  outline: none;
+  border-radius: 0;
+}
+
+input.fld:focus { background: var(--field-bg); }
+input.fld::placeholder { color: var(--white); opacity: 0.85; }
+input.fld::selection { background: var(--white); color: var(--bg); }
+input.prefix { color: var(--green); border-bottom-color: var(--dim); }
+input.prefix.mark { color: var(--white); }
+input.data { border-bottom-color: transparent; }
+input.data:focus { border-bottom-color: var(--dim); }
+input.bad { color: var(--red); border-bottom-color: var(--red); }
+input.prompt-fld::placeholder { color: var(--white); }
+
+body.busy { cursor: progress; }
+body.busy .status { color: var(--yellow); }
